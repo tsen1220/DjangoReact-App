@@ -4,7 +4,6 @@ import axios from "axios";
 
 class CustomForm extends React.Component {
   handleForm = (evt, reqType, articleID) => {
-    evt.preventDefault();
     const title = evt.target.elements.title.value;
     const content = evt.target.elements.content.value;
     console.log(title, content);
@@ -22,6 +21,7 @@ class CustomForm extends React.Component {
           .catch(err => {
             console.log(err);
           });
+        break;
       case "put":
         axios
           .put(`http://127.0.0.1:8000/api/${articleID}`, {
@@ -34,6 +34,9 @@ class CustomForm extends React.Component {
           .catch(err => {
             console.log(err);
           });
+        break;
+      default:
+        console.log("No respones");
     }
   };
 
@@ -53,7 +56,7 @@ class CustomForm extends React.Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Submit
+              {this.props.btntext}
             </Button>
           </Form.Item>
         </Form>

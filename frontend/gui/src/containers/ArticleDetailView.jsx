@@ -10,7 +10,6 @@ class ArticleDetail extends React.Component {
 
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
-    console.log(articleID);
     axios.get(`http://127.0.0.1:8000/api/${articleID}`).then(res => {
       this.setState({
         article: res.data
@@ -27,6 +26,7 @@ class ArticleDetail extends React.Component {
         <CustomForm
           reqType="put"
           articleID={this.props.match.params.articleID}
+          btntext="Update"
         />
       </div>
     );

@@ -14,7 +14,6 @@ class ArticleList extends React.Component {
       this.setState({
         articles: res.data
       });
-      console.log(res.data);
     });
   }
 
@@ -24,7 +23,7 @@ class ArticleList extends React.Component {
         <Articles data={this.state.articles} />
         <br />
         <h2>Create an article</h2>
-        <CustomForm reqType="post" articleID={null} />
+        <CustomForm reqType="post" articleID={null} btntext="Create " />
       </div>
     );
   }
