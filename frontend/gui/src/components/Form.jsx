@@ -4,6 +4,7 @@ import axios from "axios";
 
 class CustomForm extends React.Component {
   handleForm = (evt, reqType, articleID) => {
+    evt.preventDefault();
     const title = evt.target.elements.title.value;
     const content = evt.target.elements.content.value;
     console.log(title, content);
