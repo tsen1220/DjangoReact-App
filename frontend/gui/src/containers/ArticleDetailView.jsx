@@ -8,6 +8,7 @@ class ArticleDetail extends React.Component {
     article: {}
   };
 
+  //axios.get
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
     axios.get(`http://127.0.0.1:8000/api/${articleID}`).then(res => {
@@ -17,6 +18,7 @@ class ArticleDetail extends React.Component {
     });
   }
 
+  //axios.delete
   handleDelete(event) {
     event.preventDefault();
     const articleID = this.props.match.params.articleID;
