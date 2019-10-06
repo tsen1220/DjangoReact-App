@@ -12,12 +12,13 @@ class CustomForm extends React.Component {
     switch (reqType) {
       case "post":
         axios
-          .post("http://127.0.0.1:8000/api/", {
+          .post("http://127.0.0.1:8000/api/create/", {
             title: title,
             content: content
           })
           .then(res => {
             console.log(res);
+            window.location.pathname = "";
           })
           .catch(err => {
             console.log(err);
@@ -25,12 +26,13 @@ class CustomForm extends React.Component {
         break;
       case "put":
         axios
-          .put(`http://127.0.0.1:8000/api/${articleID}`, {
+          .put(`http://127.0.0.1:8000/api/${articleID}/update/`, {
             title: title,
             content: content
           })
           .then(res => {
             console.log(res);
+            window.location.pathname = "";
           })
           .catch(err => {
             console.log(err);

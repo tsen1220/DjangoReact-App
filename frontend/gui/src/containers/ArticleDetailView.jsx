@@ -20,7 +20,7 @@ class ArticleDetail extends React.Component {
   handleDelete(event) {
     event.preventDefault();
     const articleID = this.props.match.params.articleID;
-    axios.delete(`http://127.0.0.1:8000/api/${articleID}`).then(() => {
+    axios.delete(`http://127.0.0.1:8000/api/${articleID}/delete/`).then(() => {
       window.location.pathname = "";
     });
   }
