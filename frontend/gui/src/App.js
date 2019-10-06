@@ -6,6 +6,7 @@ import BaseRouter from "./routes";
 import * as actions from "./store/actions/auth";
 
 import CustomLayout from "./containers/Layout";
+
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();

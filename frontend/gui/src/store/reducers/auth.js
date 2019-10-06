@@ -29,7 +29,7 @@ const authFail = (state, action) => {
   });
 };
 
-const authLogout = (state, acction) => {
+const authLogout = (state, action) => {
   return updateObject(state, {
     token: null
   });
