@@ -42,7 +42,7 @@ const authLogout = (state, action) => {
   });
 };
 
-//reducer檢驗當前狀態 及 action執行後，將變更的狀態
+//reducer檢驗狀態 及 action執行後，將變更的狀態
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_START:

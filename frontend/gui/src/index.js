@@ -16,6 +16,7 @@ import reducer from "./store/reducers/auth";
 const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //建立狀態管理store  createStore(reducer,composeEnhances(applyMiddleware(thunk))) 中介使用redux-thunk
+//thunk化 可以回傳一個function
 const store = createStore(reducer, composeEnhances(applyMiddleware(thunk)));
 
 //Provider:可以讓組件 取得store狀態(state)

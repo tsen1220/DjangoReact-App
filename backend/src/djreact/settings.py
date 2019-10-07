@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     # Django-rest_framework (建立restfulAPI)
     'rest_framework',
 
-
+    # rest_framework 驗證
     'rest_framework.authtoken',
 
     'rest_auth',

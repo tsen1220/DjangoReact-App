@@ -146,6 +146,7 @@ const WrappedRegistrationForm = Form.create({ name: "register" })(
   RegistrationForm
 );
 
+// 相關說明在登入頁面處理
 const mapStateToProps = state => {
   return {
     loading: state.loading,

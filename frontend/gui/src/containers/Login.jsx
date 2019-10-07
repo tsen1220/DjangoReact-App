@@ -81,11 +81,12 @@ class NormalLoginForm extends React.Component {
     );
   }
 }
-
+//主要組件
 const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
   NormalLoginForm
 );
 
+//連結(connect)，組件將會監聽redux store的狀態，若store發生變化，則會調用此函式，確認store狀態，回傳值將會與組件props 連結(可以使用組件props)。
 const mapStateToProps = state => {
   return {
     loading: state.loading,
@@ -93,6 +94,8 @@ const mapStateToProps = state => {
   };
 };
 
+//連結(connect)，若進行登入action，則會dispatch函式，回傳值將可使用組件props(要connect)。
+//dispatch方法為trigger並送出回傳值給store，讓store改變目前狀態，並且回傳值可使用組件props。
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (username, password) => {

@@ -7,7 +7,7 @@ import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 
 //React Route 藉由Route來渲染component
-//<Route exact path='路徑' component={選擇的component}
+//<Route exact path='路徑' component={選擇的component}>
 
 const BaseRouter = () => (
   <div>
