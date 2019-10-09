@@ -142,9 +142,15 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         'rest_framework.permissions.AllowAny',
     ],
-
+    # 過濾器
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 
+}
+
+# restframework 認證設定
+REST_AUTH_SERIALIZERS = {
+
+    'TOKEN_SERIALIZER': 'articles.api.serializers.TokenSerializer',
 }
 
 #  同源政策處理
