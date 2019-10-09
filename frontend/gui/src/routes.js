@@ -5,6 +5,7 @@ import ArticleList from "./containers/ArticleListView";
 import ArticleDetail from "./containers/ArticleDetailView";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
+import Posts from "./containers/Posts";
 
 //React Route 藉由Route來渲染component
 //<Route exact path='路徑' component={選擇的component}>
@@ -15,6 +16,7 @@ const BaseRouter = () => (
     <Route exact path="/articles/:articleID" component={ArticleDetail} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/signup" component={Signup} />
+    <Route exact path="/posts" component={Posts} />
   </div>
 );
 

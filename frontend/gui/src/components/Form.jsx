@@ -43,20 +43,20 @@ class CustomForm extends React.Component {
           });
         break;
 
-      // case "put":
-      //   axios
-      //     .put(`http://127.0.0.1:8000/api/article/${articleID}`, {
-      //       title: title,
-      //       content: content
-      //     })
-      //     .then(res => {
-      //       console.log(res);
-      //       window.location.pathname = "";
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
-      //   break;
+      case "put":
+        axios
+          .put(`http://127.0.0.1:8000/api/article/${articleID}`, {
+            title: title,
+            content: content
+          })
+          .then(res => {
+            console.log(res);
+            window.location.pathname = `articles/${articleID}`;
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        break;
 
       default:
         console.log("No respones");
@@ -64,6 +64,10 @@ class CustomForm extends React.Component {
   };
 
   render() {
+    const style = {
+      fontSize: "20px"
+    };
+
     return (
       <div>
         <Form
@@ -71,6 +75,7 @@ class CustomForm extends React.Component {
             this.handleForm(evt, this.props.reqType, this.props.articleID)
           }
         >
+          <span style={style}> {this.props.revisemsg}</span>
           <Form.Item label="Title">
             <Input name="title" placeholder="Put a title here" />
           </Form.Item>
