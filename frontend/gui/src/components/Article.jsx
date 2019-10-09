@@ -18,20 +18,18 @@ const Articles = props => {
         onChange: page => {
           console.log(page);
         },
-        pageSize: 3
+        pageSize: 5
       }}
       dataSource={props.data}
       footer={
         <div>
-          <b>ant design</b> footer part
+          <b>Share your interesting life experience!!</b>
         </div>
       }
       renderItem={item => (
         <List.Item
           key={item.title}
           actions={[
-            <IconText type="star-o" text="156" key="list-vertical-star-o" />,
-            <IconText type="like-o" text="156" key="list-vertical-like-o" />,
             <IconText type="message" text="2" key="list-vertical-message" />
           ]}
           extra={
@@ -47,7 +45,16 @@ const Articles = props => {
             title={<a href={`/articles/${item.id}`}>{item.title}</a>}
             description={item.description}
           />
-          {item.content}
+          <div>{item.content}</div>
+          <br />
+          <div>
+            <b>PostUser:</b>
+            {item.user}
+          </div>
+          <br />
+          <div>
+            <b> Updated:</b> {item.updated}
+          </div>
         </List.Item>
       )}
     />

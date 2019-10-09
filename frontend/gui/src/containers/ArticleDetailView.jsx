@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import CustomForm from "../components/Form";
+import Comment from "../components/Comment";
 
 class ArticleDetail extends React.Component {
   state = {
@@ -11,11 +12,22 @@ class ArticleDetail extends React.Component {
   //axios.get
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
-    axios.get(`http://127.0.0.1:8000/api/${articleID}`).then(res => {
-      this.setState({
-        article: res.data
+    axios
+      .get(`http://127.0.0.1:8000/api/article/${articleID}`)
+      .then(res => {
+        this.setState({
+          article: res.data
+        });
+      })
+      .then(() => {
+        axios
+          .get(`http://127.0.0.1:8000/api/comment/?article=${articleID}`)
+          .then(res => {
+            this.setState({
+              comment: res.data
+            });
+          });
       });
-    });
   }
 
   //axios.delete
@@ -33,17 +45,25 @@ class ArticleDetail extends React.Component {
         <Card title={this.state.article.title}>
           <p>{this.state.article.content}</p>
         </Card>
+        <Comment data={this.state.comment}></Comment>
+
         <CustomForm
+          reqType="commentpost"
+          articleID={this.props.match.params.articleID}
+          btntext="Reply"
+        />
+
+        {/* <CustomForm
           reqType="put"
           articleID={this.props.match.params.articleID}
           btntext="Update"
-        />
+        /> */}
 
-        <form onSubmit={evt => this.handleDelete(evt)}>
+        {/* <form onSubmit={evt => this.handleDelete(evt)}>
           <Button type="danger" htmlType="submit">
             Delete
           </Button>
-        </form>
+        </form> */}
       </div>
     );
   }
