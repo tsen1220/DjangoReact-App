@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Card } from "antd";
-import CustomForm from "../components/Form";
 import Comment from "../components/Comment";
+import CommentForm from "../components/CommentForm";
 
 class ArticleDetail extends React.Component {
   state = {
@@ -47,7 +47,7 @@ class ArticleDetail extends React.Component {
         </Card>
         <Comment data={this.state.comment}></Comment>
 
-        <CustomForm
+        <CommentForm
           reqType="commentpost"
           articleID={this.props.match.params.articleID}
           btntext="Reply"

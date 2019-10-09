@@ -4,29 +4,13 @@ import axios from "axios";
 
 import { connect } from "react-redux";
 
-class CustomForm extends React.Component {
+class CommentForm extends React.Component {
   handleForm = (evt, reqType, articleID) => {
     evt.preventDefault();
-    const title = evt.target.elements.title.value;
     const content = evt.target.elements.content.value;
     console.log(content);
 
     switch (reqType) {
-      case "articlepost":
-        axios
-          .post("http://127.0.0.1:8000/api/article/", {
-            title: title,
-            content: content,
-            user: this.props.userid
-          })
-          .then(res => {
-            console.log(res);
-            window.location.pathname = "";
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        break;
       case "commentpost":
         axios
           .post(`http://127.0.0.1:8000/api/comment/`, {
@@ -43,21 +27,6 @@ class CustomForm extends React.Component {
           });
         break;
 
-      // case "put":
-      //   axios
-      //     .put(`http://127.0.0.1:8000/api/article/${articleID}`, {
-      //       title: title,
-      //       content: content
-      //     })
-      //     .then(res => {
-      //       console.log(res);
-      //       window.location.pathname = "";
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
-      //   break;
-
       default:
         console.log("No respones");
     }
@@ -71,10 +40,6 @@ class CustomForm extends React.Component {
             this.handleForm(evt, this.props.reqType, this.props.articleID)
           }
         >
-          <Form.Item label="Title">
-            <Input name="title" placeholder="Put a title here" />
-          </Form.Item>
-
           <Form.Item label="Content">
             <Input name="content" placeholder="Enter some content ..." />
           </Form.Item>
@@ -95,4 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(CustomForm);
+export default connect(mapStateToProps)(CommentForm);

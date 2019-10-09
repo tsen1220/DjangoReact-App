@@ -18,13 +18,16 @@ const Comments = props => {
         <List.Item>
           <List.Item.Meta avatar={<Avatar src={item.avatar} />} />
           <div>
-            <b>Reply</b>:{item.content}
-          </div>
-          <br />
-          <div>
             <b>User:</b>
             {item.user}
           </div>
+          <br />
+
+          <div>
+            <b>Reply</b>:{item.content}
+          </div>
+          <br />
+
           <br />
           <div>
             <b> Updated:</b> {item.updated}

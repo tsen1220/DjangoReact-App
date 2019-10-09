@@ -6,7 +6,8 @@ import CustomForm from "../components/Form";
 
 class ArticleList extends React.Component {
   state = {
-    articles: []
+    articles: [],
+    comment: []
   };
 
   //axios.get
