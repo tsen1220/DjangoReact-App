@@ -42,6 +42,10 @@ class ArticleDetail extends React.Component {
   }
 
   render() {
+    const font = {
+      fontSize: "25px"
+    };
+
     return (
       <div>
         <Card title={this.state.article.title}>
@@ -69,12 +73,15 @@ class ArticleDetail extends React.Component {
           )}
         </Card>
         <Comment data={this.state.comment}></Comment>
-
-        <CommentForm
-          reqType="commentpost"
-          articleID={this.props.match.params.articleID}
-          btntext="Reply"
-        />
+        {this.props.userid !== null ? (
+          <CommentForm
+            reqType="commentpost"
+            articleID={this.props.match.params.articleID}
+            btntext="Reply"
+          />
+        ) : (
+          <span style={font}>Login to reply</span>
+        )}
       </div>
     );
   }
