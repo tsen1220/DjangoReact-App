@@ -28,6 +28,8 @@ INSTALLED_APPS = [
 
     # Django-rest_framework (建立restfulAPI)
     'rest_framework',
+    # 篩選
+    'django_filters',
 
     # rest_framework 驗證
     'rest_framework.authtoken',
@@ -47,7 +49,6 @@ INSTALLED_APPS = [
     'articles',
 
 
-    'django_filters'
 ]
 
 SITE_ID = 1

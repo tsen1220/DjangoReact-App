@@ -1,6 +1,10 @@
+from rest_framework import generics
+from django.contrib.auth.models import User
+import django_filters.rest_framework
 from articles.models import Article, Comment
 from .serializers import ArticleSerializer, CommentSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .fliters import CommentFilter
 
 
 class ArticleListView(ListCreateAPIView):
@@ -11,6 +15,7 @@ class ArticleListView(ListCreateAPIView):
 class CommentListView(ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    filter_class = CommentFilter
 
 
 class ArticleDetailView(RetrieveUpdateDestroyAPIView):
