@@ -31,6 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TokenSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
+# fields必須為表單建立時的欄位
     class Meta:
         model = Token
         fields = ('key', 'user')

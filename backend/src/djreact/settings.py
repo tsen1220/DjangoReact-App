@@ -28,7 +28,8 @@ INSTALLED_APPS = [
 
     # Django-rest_framework (建立restfulAPI)
     'rest_framework',
-    # 篩選
+
+    # 篩選器
     'django_filters',
 
     # rest_framework 驗證

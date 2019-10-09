@@ -6,6 +6,7 @@ import { updateObject } from "../utility";
 //store初始狀態
 const initialState = {
   token: null,
+  userid: null,
   error: null,
   loading: false
 };
@@ -22,6 +23,7 @@ const authStart = (state, action) => {
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
+    userid: action.userid,
     error: null,
     loading: false
   });
@@ -38,7 +40,8 @@ const authFail = (state, action) => {
 //store驗證登出狀態
 const authLogout = (state, action) => {
   return updateObject(state, {
-    token: null
+    token: null,
+    userid: null
   });
 };
 

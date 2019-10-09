@@ -9,10 +9,11 @@ export const authStart = () => {
 };
 
 //驗證成功會給予一個金鑰，並回傳 含金鑰以及驗證成功類型 的物件
-export const authSuccess = token => {
+export const authSuccess = (token, userid) => {
   return {
     type: actionType.AUTH_SUCCESS,
-    token: token
+    token: token,
+    userid: userid
   };
 };
 
@@ -26,7 +27,8 @@ export const authFail = error => {
 
 //登出則移除使用者以及預定登出的時間 並回傳登出的訊息(localStorage.removeItem('data'))
 export const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  localStorage.removeItem("userid");
   localStorage.removeItem("expirationDate");
   return {
     type: actionType.AUTH_LOGOUT
@@ -62,10 +64,12 @@ export const authLogin = (username, password) => {
       })
       .then(res => {
         const token = res.data.key;
+        const userid = res.data.user.username;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
         localStorage.setItem("token", token);
+        localStorage.setItem("userid", userid);
         localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
+        dispatch(authSuccess(token, userid));
         dispatch(checkAuthTimeout(3600));
       })
       .catch(err => {
@@ -87,10 +91,13 @@ export const authSignup = (username, email, password1, password2) => {
       })
       .then(res => {
         const token = res.data.key;
+        const userid = res.data.user.username;
+
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
         localStorage.setItem("token", token);
+        localStorage.setItem("userid", userid);
         localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
+        dispatch(authSuccess(token, userid));
         dispatch(checkAuthTimeout(3600));
       })
       .catch(err => {
@@ -107,6 +114,7 @@ export const authSignup = (username, email, password1, password2) => {
 export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
+    const userid = localStorage.getItem("userid");
     if (token === undefined) {
       dispatch(logout());
     } else {
@@ -114,7 +122,7 @@ export const authCheckState = () => {
       if (expirationDate <= new Date()) {
         dispatch(logout());
       } else {
-        dispatch(authSuccess(token));
+        dispatch(authSuccess(token, userid));
         dispatch(
           checkAuthTimeout(
             expirationDate.getTime() - new Date().getTime() / 1000
