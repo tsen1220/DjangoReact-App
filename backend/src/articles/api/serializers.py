@@ -1,6 +1,5 @@
 from rest_framework import serializers
-
-from articles.models import Article
+from articles.models import Article, Comment
 
 # 使用rest_framework 建立RESTful API
 # 建立API的格式
@@ -12,4 +11,10 @@ from articles.models import Article
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'content')
+        fields = ('id', 'title', 'content', 'user', 'created', 'updated')
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'article', 'content', 'user', 'created', 'updated')

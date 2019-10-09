@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # django app
-    'articles'
+    'articles',
+
+
+    'django_filters'
 ]
 
 SITE_ID = 1
@@ -116,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
@@ -137,7 +140,10 @@ REST_FRAMEWORK = {
         # 下為僅限Read
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+
 }
 
 #  同源政策處理

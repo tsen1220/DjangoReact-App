@@ -1,13 +1,13 @@
 # API路徑 <pk>primary key
 from django.urls import path
-from .views import ArticleListView, ArticleDetailView, ArticleCreateView, ArticleUpdataView, ArticleDeleteView
+from .views import ArticleListView, CommentListView, ArticleDetailView, CommentDetailView
 
 urlpatterns = [
-    path('', ArticleListView.as_view()),
-    path('create/', ArticleCreateView.as_view()),
-    path('<pk>', ArticleDetailView.as_view()),
-    path('<pk>/update/', ArticleUpdataView.as_view()),
-    path('<pk>/delete/', ArticleDeleteView.as_view()),
+    path('article/', ArticleListView.as_view()),
+    path('article/<pk>', ArticleDetailView.as_view()),
+    path('comment/', CommentListView.as_view()),
+    path('comment/<pk>', CommentDetailView.as_view())
+
 ]
 
 
