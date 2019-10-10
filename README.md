@@ -2,7 +2,7 @@
 
 [啟動](#啟動)
 
-[介紹](#介紹)
+[簡介](#簡介)
 
 [新話題](#新話題)
 
@@ -58,3 +58,11 @@ $ py manage.py runserver
 ```
 
 # 介紹
+
+這是一個簡易的論壇，使用者可以發佈談話主題，其他用戶看到感興趣的主題，可以點進去並回文，並與其他用戶進行互動。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Home.jpg' alt=''>
+
+# 新話題
+
+使用者登入後可以在 Posts 的位置發佈主題，或至主題列最下方發佈。
