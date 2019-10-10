@@ -59,10 +59,28 @@ $ py manage.py runserver
 
 # 介紹
 
-這是一個簡易的論壇，使用者可以發佈談話主題，其他用戶看到感興趣的主題，可以點進去並回文，並與其他用戶進行互動。
+這是一個簡易的論壇，使用者可以發佈談話主題，其他用戶看到感興趣的主題，可以點進去並留言，與其他用戶進行互動。
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Home.jpg' alt=''>
 
 # 新話題
 
 使用者登入後可以在 Posts 的位置發佈主題，或至主題列最下方發佈。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Posts%202.jpg' alt=''>
+
+需要進行登入才能發文。
+
+說明:發佈的貼文會 Post 到後端 API，傳至資料庫，再由前端串接，並在頁面上顯示內容。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/ArticleAPI.jpg' alt=''>
+
+# 留言
+
+使用者進入別人開設的主題後，可以在裡面留言，與其他用戶互動。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Reply.jpg' alt=''>
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Reply2.jpg' alt=''>
+
+同樣地，留言會 Post 到後端 API ，並在頁面上顯示留言。
