@@ -69,7 +69,13 @@ $ py manage.py runserver
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Posts%202.jpg' alt=''>
 
-需要進行登入才能發文。
+需要進行登入才能發文，不然功能會被鎖定。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/beforeLogin.jpg' alt=''>
+
+若主題發佈者是使用者本人，則可以進行刪除貼人以及改變主題內容的動作。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/revisedelete.jpg'>
 
 說明:發佈的貼文會 Post 到後端 API，傳至資料庫，再由前端串接，並在頁面上顯示內容。
 
@@ -83,4 +89,32 @@ $ py manage.py runserver
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Reply2.jpg' alt=''>
 
-同樣地，留言會 Post 到後端 API ，並在頁面上顯示留言。
+同樣地，流程與發文相同，留言會 Post 到後端 API ，並在頁面上顯示留言。
+
+且未登入一樣無法使用留言系統。
+
+<img  src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/beforelogincomment.jpg' alt=''>
+
+# 登入
+
+登入頁面。
+
+如果沒有帳號請選擇註冊。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Login.jpg' alt=''>
+
+當登入完成後，會將登入資訊 POST 到後端，後端會回應並傳出登入的帳號以及 Token，前端接受並儲存，並使用 Redux 進行狀態管理，確認是否為登入成功的狀態，而 Login 會變更為 Logout。
+
+後端 API 登入後的操作。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/loginAPI.jpg' alt=''>
+
+# 註冊
+
+註冊頁面。
+
+輸入以下資訊即註冊完成。
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-MessageBoard/master/intro/Signup.jpg' alt=''>
+
+註冊完成後跟登入一樣，後端會傳出相關資訊，並使用 Redux 進行狀態管理，並變更為登入成功的狀態。
