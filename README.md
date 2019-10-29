@@ -57,7 +57,7 @@ $ pip install -r requirements.txt
 $ py manage.py runserver
 ```
 
-# 介紹
+# 簡介
 
 這是一個簡易的論壇，使用者可以發佈談話主題，其他用戶看到感興趣的主題，可以點進去並留言，與其他用戶進行互動。
 
@@ -103,7 +103,67 @@ $ py manage.py runserver
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Login.jpg' alt=''>
 
-當登入完成後，會將登入資訊 POST 到後端，後端會回應並傳出登入的帳號以及 Token，前端接受並儲存，並使用 Redux 進行狀態管理，確認是否為登入成功的狀態，而 Login 會變更為 Logout。
+當登入完成後，會將登入資訊 POST 到後端，後端會回應並傳出登入的帳號以及 Token，隨後前端接收並 Dispatch， Redux 來進行狀態管理，確認是否為登入成功的狀態，而 Login 會變更為 Logout。
+
+Redux 的 reducer 主要設定為:
+
+```
+
+utility:updateObject(state,updatedProperty)
+
+const initialState = {
+  token: null,
+  userid: null,
+  error: null,
+  loading: false
+};
+
+const authStart = (state, action) => {
+  return updateObject(state, {
+    error: null,
+    loading: true
+  });
+};
+
+const authSuccess = (state, action) => {
+  return updateObject(state, {
+    token: action.token,
+    userid: action.userid,
+    error: null,
+    loading: false
+  });
+};
+
+const authFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
+const authLogout = (state, action) => {
+  return updateObject(state, {
+    token: null,
+    userid: null
+  });
+};
+
+```
+
+而 login actions 簡單地分為:
+
+```
+
+function authStart()
+function authSuccess(token, userid)
+function authFail(error)
+function logout()
+function checkAuthTimeout(expirationTime)
+function authLogin (username, password)
+function authCheckState ()
+
+You can know the detail from code.
+```
 
 後端 API 登入後的操作。
 
@@ -117,6 +177,14 @@ $ py manage.py runserver
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Signup.jpg' alt=''>
 
-註冊完成後跟登入一樣，但是後端會先把資訊傳入資料庫，後面與登入流程大同小異，傳出相關使用者資料，並使用 Redux 進行狀態管理，並變更為登入成功的狀態。
+註冊完成後跟登入一樣，但是後端會先把資訊傳入 Django Model，由 Model 處理並放置於資料庫，後面與登入流程大同小異。
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/registerAPI2.jpg' atl=''>
+
+action 部分這邊多使用了:
+
+```
+
+function authSignup (username, email, password1, password2)
+
+```
