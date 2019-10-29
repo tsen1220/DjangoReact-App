@@ -77,9 +77,20 @@ $ py manage.py runserver
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/revisedelete.jpg'>
 
-說明:發佈的貼文會 Post 到後端 API，傳至資料庫，再由前端串接，並在頁面上顯示內容。
+說明:發佈的貼文會 Post 到後端，傳至 Django Model 處理，並存放置資料庫，再透過 API，由前端串接，並在頁面上顯示內容。
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/ArticleAPI.jpg' alt=''>
+
+```
+Article API setting:
+
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ('id', 'title', 'content', 'user', 'created', 'updated')
+
+
+```
 
 # 留言
 
@@ -89,11 +100,33 @@ $ py manage.py runserver
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Reply2.jpg' alt=''>
 
-同樣地，流程與發文相同，留言會 Post 到後端 API ，並在頁面上顯示留言。
+同樣地，流程與發文相同，留言會 Post 到後端，經由 Django Model 處理，存至資料庫 ，並在頁面上顯示留言，在這裡留言的顯示會根據 Foreign Key 的索引經由 API filter 顯示。
 
 且未登入一樣無法使用留言系統。
 
 <img  src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/beforelogincomment.jpg' alt=''>
+
+```
+
+API filter:
+
+class CommentFilter(django_filters.FilterSet):
+    class Meta:
+        model = Comment
+        fields = ['article', 'user']
+
+```
+
+```
+
+API setting:
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'article', 'content', 'user', 'created', 'updated')
+
+```
 
 # 登入
 
@@ -104,6 +137,30 @@ $ py manage.py runserver
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Login.jpg' alt=''>
 
 當登入完成後，會將登入資訊 POST 到後端，後端會回應並傳出登入的帳號以及 Token，隨後前端接收並 Dispatch， Redux 來進行狀態管理，確認是否為登入成功的狀態，而 Login 會變更為 Logout。
+
+在這邊使用 rest framework 的 auth 部分，API 設定為:
+
+```
+
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Token
+        fields = ('key', 'user')
+
+
+```
 
 Redux 的 reducer 主要設定為:
 
