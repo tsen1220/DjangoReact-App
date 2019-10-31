@@ -12,6 +12,8 @@
 
 [註冊](#註冊)
 
+如果你喜歡，請給我一顆星，我會很感謝你。 If you like this, please give me a star. Thank you!!
+
 # 啟動
 
 ## 前端
