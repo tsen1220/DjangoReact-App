@@ -86,7 +86,7 @@ If you aren't login, the feature will lock.
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/beforeLogin.jpg' alt=''>
 
-If you are the article poster, you can delete and update the article.
+If you are the article creator, you can delete and update the article.
 
 <img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/revisedelete.jpg'>
 
