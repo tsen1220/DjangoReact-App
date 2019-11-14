@@ -102,7 +102,9 @@ export const authSignup = (username, email, password1, password2) => {
         dispatch(checkAuthTimeout(3600));
       })
       .catch(err => {
-        alert(" Please check your account information again!");
+        alert(
+          "Maybe account is existed. Or check password which must contain at least 8 characters mixed English with numbers."
+        );
         dispatch(authFail(err));
       });
   };
