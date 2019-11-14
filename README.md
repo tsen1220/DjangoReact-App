@@ -43,7 +43,7 @@ $ npm install
 Then, we need to run the front-end server.
 
 ```
-npm run start
+$ npm run start
 ```
 
 ## Django
