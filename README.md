@@ -115,7 +115,7 @@ Users can enter the articles and comment.
 
 Comments will have foreign key to connect with the article which they leave messages.
 
-You can comment until you login.
+You can't comment until you login.
 
 <img  src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/beforelogincomment.jpg' alt=''>
 
