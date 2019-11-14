@@ -1,4 +1,18 @@
-# 目錄
+# Catalog/目錄
+
+## English
+
+[GettingStarted](#GettingStarted)
+
+[NewArticle](#NewArticle)
+
+[Comment](#Comment)
+
+[Login](#Login)
+
+[Registration](#Registration)
+
+## 中文
 
 [啟動](#啟動)
 
@@ -11,6 +25,241 @@
 [登入](#登入)
 
 [註冊](#註冊)
+
+如果你喜歡，請給我一顆星，我會很感謝你。
+
+If you like this, please give me a star. Thank you!!
+
+# GettingStarted
+
+## React
+
+Hello, you can start this project by installing react and others modules with front-end by npm.
+
+```
+$ npm install
+```
+
+Then, we need to run the front-end server.
+
+```
+npm run start
+```
+
+## Django
+
+We need to enter the virtual environment to run django server.
+
+```
+$ virtualenv env
+```
+
+```
+$ cd env
+$ Scripts/activate (Windows)
+$ source bin/activate (MacOS/Linux)
+```
+
+Run server.
+
+```
+$ py manage.py runserver
+```
+
+---
+
+## Introduction
+
+This is a forum where users can post articles.
+
+Users can read and comment which they are interested in.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Home.jpg' alt=''>
+
+# NewArticle
+
+Users can post their article after they login.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Posts.jpg' alt=''>
+
+If you aren't login, the feature will lock.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/beforeLogin.jpg' alt=''>
+
+If you are the article poster, you can delete and update the article.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/revisedelete.jpg'>
+
+Hint: Data will post, then Django Model will process that, save to SQLite3, design api with rest framework finally.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/ArticleAPI.jpg' alt=''>
+
+```
+Article API setting:
+
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ('id', 'title', 'content', 'user', 'created', 'updated')
+
+
+```
+
+# Comment
+
+Users can enter the articles and comment.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Reply.jpg' alt=''>
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Reply2.jpg' alt=''>
+
+Comments will have foreign key to connect with the article which they leave messages.
+
+You can comment until you login.
+
+<img  src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/beforelogincomment.jpg' alt=''>
+
+```
+
+API filter:
+
+class CommentFilter(django_filters.FilterSet):
+    class Meta:
+        model = Comment
+        fields = ['article', 'user']
+
+```
+
+```
+
+API setting:
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'article', 'content', 'user', 'created', 'updated')
+
+```
+
+# Login
+
+Login page:
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Login.jpg' alt=''>
+
+When it posts the account info, back-end will receive the requests and then send token and username to front-end.
+
+React gets the response then dispatch information.
+
+Rudex manages the statement.
+
+Rest-auth API settings:
+
+```
+
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Token
+        fields = ('key', 'user')
+
+
+```
+
+Redux reducer settings:
+
+```
+
+utility:updateObject(state,updatedProperty)
+
+const initialState = {
+  token: null,
+  userid: null,
+  error: null,
+  loading: false
+};
+
+const authStart = (state, action) => {
+  return updateObject(state, {
+    error: null,
+    loading: true
+  });
+};
+
+const authSuccess = (state, action) => {
+  return updateObject(state, {
+    token: action.token,
+    userid: action.userid,
+    error: null,
+    loading: false
+  });
+};
+
+const authFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
+const authLogout = (state, action) => {
+  return updateObject(state, {
+    token: null,
+    userid: null
+  });
+};
+
+```
+
+Login actions function settings:
+
+```
+
+function authStart()
+function authSuccess(token, userid)
+function authFail(error)
+function logout()
+function checkAuthTimeout(expirationTime)
+function authLogin (username, password)
+function authCheckState ()
+
+You can know the detail from code.
+```
+
+Back-end API login.
+
+<img src='https://github.com/tsen1220/DjangoReact-Forum/blob/master/intro/loginAPI.jpg' alt=''>
+
+# Registration
+
+Registration page:
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/Signup.jpg' alt=''>
+
+The post data will insert into SQLite3 by Django Model.
+
+<img src='https://raw.githubusercontent.com/tsen1220/DjangoReact-Forum/master/intro/registerAPI2.jpg' atl=''>
+
+Registration has the addition action below.
+
+```
+
+function authSignup (username, email, password1, password2)
+
+You can know the detail from code.
+
+```
 
 # 啟動
 
@@ -243,5 +492,7 @@ action 部分這邊多使用了:
 ```
 
 function authSignup (username, email, password1, password2)
+
+You can know the detail from code.
 
 ```

@@ -73,6 +73,7 @@ export const authLogin = (username, password) => {
         dispatch(checkAuthTimeout(3600));
       })
       .catch(err => {
+        alert(" Please check your username and password!");
         dispatch(authFail(err));
       });
   };
@@ -101,6 +102,7 @@ export const authSignup = (username, email, password1, password2) => {
         dispatch(checkAuthTimeout(3600));
       })
       .catch(err => {
+        alert(" Please check your account information again!");
         dispatch(authFail(err));
       });
   };
