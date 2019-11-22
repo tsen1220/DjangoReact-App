@@ -12,6 +12,8 @@
 
 [Registration](#Registration)
 
+If you like this, please give me a star. Thank you!!
+
 ## 中文
 
 [啟動](#啟動)
@@ -28,7 +30,6 @@
 
 如果你喜歡，請給我一顆星，我會很感謝你。
 
-If you like this, please give me a star. Thank you!!
 
 # GettingStarted
 
