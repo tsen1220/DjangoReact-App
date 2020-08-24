@@ -6,27 +6,22 @@ from .serializers import ArticleSerializer, CommentSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .fliters import CommentFilter
 
-
 class ArticleListView(ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-
 
 class CommentListView(ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     filter_class = CommentFilter
 
-
 class ArticleDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
-
 class CommentDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-
 
 # 列出該位置資料庫所有內容 格式為JSON
 

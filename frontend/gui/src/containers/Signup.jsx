@@ -162,7 +162,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WrappedRegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedRegistrationForm);

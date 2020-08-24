@@ -7,9 +7,7 @@ urlpatterns = [
     path('article/<pk>', ArticleDetailView.as_view()),
     path('comment/', CommentListView.as_view()),
     path('comment/<pk>', CommentDetailView.as_view())
-
 ]
-
 
 # REST FRAMEWORK提供的 viewsets 包含上述功能 路徑參考官方文件
 # from .views import ArticleViewSet

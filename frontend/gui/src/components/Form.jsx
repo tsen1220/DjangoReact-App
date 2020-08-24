@@ -26,7 +26,7 @@ class CustomForm extends React.Component {
           .catch(err => {
             console.log(err);
           });
-        break;
+      break;
       case "commentpost":
         axios
           .post(`http://127.0.0.1:8000/api/comment/`, {
@@ -41,8 +41,7 @@ class CustomForm extends React.Component {
           .catch(err => {
             console.log(err);
           });
-        break;
-
+      break;
       case "put":
         axios
           .put(`http://127.0.0.1:8000/api/article/${articleID}`, {
@@ -56,8 +55,7 @@ class CustomForm extends React.Component {
           .catch(err => {
             console.log(err);
           });
-        break;
-
+      break;
       default:
         console.log("No respones");
     }

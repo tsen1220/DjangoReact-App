@@ -9,24 +9,20 @@ from articles.models import Article, Comment
 #      model =建立API 的 model
 #      fields = API建立 的 內容物(model結構)
 
-
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id', 'title', 'content', 'user', 'created', 'updated')
-
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'article', 'content', 'user', 'created', 'updated')
 
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email')
-
 
 class TokenSerializer(serializers.ModelSerializer):
     user = UserSerializer()
